@@ -1,6 +1,8 @@
 from: https://patchwork.kernel.org/project/linux-mm/cover/20220407031525.2368067-1-yuzhao@google.com/
 see also: https://www.phoronix.com/scan.php?page=news_item&px=MGLRU-Not-For-5.18
 
+tested with v5.18-rc6
+
 TLDR
 ====
 The current page reclaim is too expensive in terms of CPU usage and it
