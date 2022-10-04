@@ -10,14 +10,14 @@ index 9a5ca7b82bfc..507a317d54db 100644
  	/*
  	 * This prevents preemption while active_mm is being loaded and
  	 * it and mm are being updated, which could cause problems for
-@@ -1029,6 +1030,7 @@ static int exec_mmap(struct mm_struct *mm)
+@@ -1026,6 +1027,7 @@ static int exec_mmap(struct mm_struct *mm)
  	tsk->mm->vmacache_seqnum = 0;
  	vmacache_flush(tsk);
  	task_unlock(tsk);
 +	lru_gen_use_mm(mm);
- 
- 	if (vfork)
- 		timens_on_fork(tsk->nsproxy, tsk);
+ 	if (old_mm) {
+ 		mmap_read_unlock(old_mm);
+ 		BUG_ON(active_mm != old_mm);
 diff --git a/include/linux/memcontrol.h b/include/linux/memcontrol.h
 index 9b8ab121d948..344022f102c2 100644
 --- a/include/linux/memcontrol.h

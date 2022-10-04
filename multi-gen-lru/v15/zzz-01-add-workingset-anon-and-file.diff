@@ -1,0 +1,15 @@
+based on: https://lkml.org/lkml/2022/8/7/392
+
+diff --git a/include/linux/mmzone.h b/include/linux/mmzone.h
+index e24b40c52468..1543001feba9 100644
+--- a/include/linux/mmzone.h
++++ b/include/linux/mmzone.h
+@@ -306,6 +306,8 @@ static inline bool is_active_lru(enum lru_list lru)
+ 	return (lru == LRU_ACTIVE_ANON || lru == LRU_ACTIVE_FILE);
+ }
+ 
++#define WORKINGSET_ANON 0
++#define WORKINGSET_FILE 1
+ #define ANON_AND_FILE 2
+ 
+ enum lruvec_flags {

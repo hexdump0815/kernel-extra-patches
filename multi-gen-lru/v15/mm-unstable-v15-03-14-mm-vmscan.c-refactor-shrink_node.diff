@@ -112,7 +112,7 @@ index 992ba6a0bf10..0869cee13a90 100644
  /*
   * Determine how aggressively the anon and file LRU lists should be
   * scanned.
-@@ -3195,109 +3298,16 @@ static void shrink_node(pg_data_t *pgdat, struct scan_control *sc)
+@@ -3197,109 +6075,16 @@ static void shrink_node(pg_data_t *pgdat, struct scan_control *sc)
  	unsigned long nr_reclaimed, nr_scanned;
  	struct lruvec *target_lruvec;
  	bool reclaimable = false;
@@ -147,22 +147,22 @@ index 992ba6a0bf10..0869cee13a90 100644
 -	if (!sc->force_deactivate) {
 -		unsigned long refaults;
 -
+-		refaults = lruvec_page_state(target_lruvec,
+-				WORKINGSET_ACTIVATE_ANON);
+-		if (refaults != target_lruvec->refaults[0] ||
+-			inactive_is_low(target_lruvec, LRU_INACTIVE_ANON))
+-			sc->may_deactivate |= DEACTIVATE_ANON;
+-		else
+-			sc->may_deactivate &= ~DEACTIVATE_ANON;
+-
 -		/*
 -		 * When refaults are being observed, it means a new
 -		 * workingset is being established. Deactivate to get
 -		 * rid of any stale active pages quickly.
 -		 */
 -		refaults = lruvec_page_state(target_lruvec,
--				WORKINGSET_ACTIVATE_ANON);
--		if (refaults != target_lruvec->refaults[WORKINGSET_ANON] ||
--			inactive_is_low(target_lruvec, LRU_INACTIVE_ANON))
--			sc->may_deactivate |= DEACTIVATE_ANON;
--		else
--			sc->may_deactivate &= ~DEACTIVATE_ANON;
--
--		refaults = lruvec_page_state(target_lruvec,
 -				WORKINGSET_ACTIVATE_FILE);
--		if (refaults != target_lruvec->refaults[WORKINGSET_FILE] ||
+-		if (refaults != target_lruvec->refaults[1] ||
 -		    inactive_is_low(target_lruvec, LRU_INACTIVE_FILE))
 -			sc->may_deactivate |= DEACTIVATE_FILE;
 -		else
