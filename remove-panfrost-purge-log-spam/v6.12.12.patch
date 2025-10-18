@@ -8,8 +8,8 @@ index 3d9f51bd48b6..89d9d3d94acb 100644
  
 -	if (freed > 0)
 -		pr_info_ratelimited("Purging %lu bytes\n", freed << PAGE_SHIFT);
-+//	if (freed > 0)
-+//		pr_info_ratelimited("Purging %lu bytes\n", freed << PAGE_SHIFT);
++	if (freed > 0)
++		pr_debug_ratelimited("Purging %lu bytes\n", freed << PAGE_SHIFT);
  
  	return freed;
  }
