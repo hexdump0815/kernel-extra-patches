@@ -1,0 +1,13 @@
+diff --git a/drivers/power/supply/power_supply_sysfs.c b/drivers/power/supply/power_supply_sysfs.c
+index d483a81560ab..4bbe67a90ae4 100644
+--- a/drivers/power/supply/power_supply_sysfs.c
++++ b/drivers/power/supply/power_supply_sysfs.c
+@@ -290,7 +290,7 @@ static ssize_t power_supply_show_property(struct device *dev,
+ 					"driver has no data for `%s' property\n",
+ 					attr->attr.name);
+ 			else if (ret != -ENODEV && ret != -EAGAIN)
+-				dev_err_ratelimited(dev,
++				dev_dbg_ratelimited(dev,
+ 					"driver failed to report `%s' property: %zd\n",
+ 					attr->attr.name, ret);
+ 			return ret;
